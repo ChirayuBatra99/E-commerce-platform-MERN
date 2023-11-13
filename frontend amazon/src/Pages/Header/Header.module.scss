@@ -1,0 +1,15 @@
+// *{
+//     size: 10px;
+// }
+
+.logo{
+    position: sticky;
+    width: 250px;
+    height: 80px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color: grey;
+}

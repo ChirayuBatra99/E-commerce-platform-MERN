@@ -1,0 +1,13 @@
+.product{
+    display: flex;
+    flex-direction: column;
+    // height: 40px;
+    width: 20%;
+}
+
+.product > img{
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
