@@ -1,39 +1,84 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import styles from './signin.module.scss'
+const baseURL = 'http://localhost:8005'
 
 function SignIn() {
 
-  const [email, setEmail]=useState("");
-  const [password, setPassword]= useState("");
+  const navigate = useNavigate();
+  const [logData, setData] = useState({
+    email: "",
+    password: ""
+  });
 
-  const handleSubmit=()=>{
-      // FIX ME
+  const adddata = (e) => {
+    const { name, value } = e.target;
+    setData((pre) => {
+      return {
+        ...pre,
+        [name]: value
+      }
+    })
+  };
+
+  const handleCreate = () => {
+    navigate("/signup")
   }
 
-  const handleCreate=()=>{
-    //FIX ME
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = logData;
+    try {
+      const res = await fetch(`/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email, password
+        })
+      });
+      const data = await res.json();
+      if (res.status === 400 || !data) {
+        console.log("invalid details")
+      }
+      else {
+        console.log("data valid")
+        setData({ ...logData, email: "", password: "" })
+        console.log(data);
+      }
+    }
+    catch (error) {
+      console.log("hi", error)
+    }
   }
 
   return (
-    <div>
-      hemlo logo
+    <div className={styles.box}>
+      Amazon
       <h1>Sign In</h1>
       <h3>Email or mobile phone number</h3>
+      <div className={styles.inputs}>
       <input
-      className='email-input'
-      type="email" 
-      id="email" 
-      value={email}
-       placeholder='email' 
-      onChange={(e)=> setEmail(e.target.value)}
+        className={module.inputfield}
+        type="email"
+        name="email"
+        id="email"
+        value={logData.email}
+        placeholder='email'
+        onChange={adddata}
       />
-       <input
-      className='password-input'
-      type="password" 
-      id="password" 
-      value={password}
-       placeholder='password' 
-      onChange={(e)=> setPassword(e.target.value)}
+
+      <input
+        className={module.inputfield}
+        type="password"
+        name="password"
+        id="password"
+        value={logData.password}
+        placeholder='password'
+        onChange={adddata}
       />
+      </div>
       <button className='submit-button' onClick={handleSubmit} type="submit"> Continue</button>
 
       <h2>New to Amazon?</h2>

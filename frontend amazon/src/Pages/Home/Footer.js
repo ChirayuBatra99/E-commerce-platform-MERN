@@ -9,39 +9,39 @@ function Footer() {
     <div className={styles.Foot}>
       <div className="footer-details1">
         <h3>Get to Know Us</h3>
-        <p>About Us</p>
-        <p>Careers</p>
-        <p>Press Releases</p>
-        <p>Amazon Science</p>
+        <p className={styles.hoverFunctionality}>About Us</p>
+        <p className={styles.hoverFunctionality}>Careers</p>
+        <p className={styles.hoverFunctionality}>Press Releases</p>
+        <p className={styles.hoverFunctionality}>Amazon Science</p>
       </div>
 
       <div className="footer-details2">
         <h3>Connect with us</h3>
-        <p>Facebook</p>
-        <p>Twitter</p>
-        <p>Instagram</p>
+        <p className={styles.hoverFunctionality}>Facebook</p>
+        <p className={styles.hoverFunctionality}>Twitter</p>
+        <p className={styles.hoverFunctionality}>Instagram</p>
       </div>
 
       <div className="footer-details3">
         <h3>Make Money with Us</h3>
-        <p>Sell on Amazon</p>
-        <p>Sell under Amazon Accelerator</p>
-        <p>Protect and Build Your Brand</p>
-        <p>Amazon Global Selling</p>
-        <p>Become an Affiliate</p>
-        <p>Fulfilment by Amazon</p>
-        <p>Advertise Your Products</p>
-        <p>Amazon Pay on Merchants</p>
+        <p className={styles.hoverFunctionality}>Sell on Amazon</p>
+        <p className={styles.hoverFunctionality}>Sell under Amazon Accelerator</p>
+        <p className={styles.hoverFunctionality}>Protect and Build Your Brand</p>
+        <p className={styles.hoverFunctionality}>Amazon Global Selling</p>
+        <p className={styles.hoverFunctionality}>Become an Affiliate</p>
+        <p className={styles.hoverFunctionality}>Fulfilment by Amazon</p>
+        <p className={styles.hoverFunctionality}>Advertise Your Products</p>
+        <p className={styles.hoverFunctionality}>Amazon Pay on Merchants</p>
       </div>
 
       <div className="footer-details2">
         <h3>Let Us Help You</h3>
-        <p>COVID-19 and Amazon</p>
-        <p>Your Account</p>
-        <p>Returns Centre</p>
-        <p>100% Purchase Protection</p>
-        <p>Amazon App Download</p>
-        <p>Help</p>
+        <p className={styles.hoverFunctionality}>COVID-19 and Amazon</p>
+        <p className={styles.hoverFunctionality}>Your Account</p>
+        <p className={styles.hoverFunctionality}>Returns Centre</p>
+        <p className={styles.hoverFunctionality}>100% Purchase Protection</p>
+        <p className={styles.hoverFunctionality}>Amazon App Download</p>
+        <p className={styles.hoverFunctionality}>Help</p>
       </div>
     </div>
     <div className='last-details'>

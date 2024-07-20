@@ -1,7 +1,7 @@
-export const products = [
+const products = [
     { 
-        id: '668a517cd226565ddc39e408',
-        url: 'https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/Oct/Jupiter23/Kitchen/QC_PC_372x232_1._SY232_CB573889351_.jpg', 
+        id:"products1",
+        url: 'https://rukminim1.flixcart.com/image/150/150/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70', 
         detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70',
         title: {
             shortTitle: 'Home & Kitchen',
@@ -17,8 +17,8 @@ export const products = [
         tagline: 'Deal of the day' 
     },
     { 
-        id: 'product2',
-        url: 'https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/Oct/Jupiter23/Kitchen/QC_PC_372x232_7._SY232_CB573889443_.jpg', 
+        id:"products2",
+        url: 'https://rukminim1.flixcart.com/image/416/416/kl6wx3k0/sandwich-maker/8/r/d/sandwich-01-flipkart-smartbuy-original-imagydds4zthxt8z.jpeg?q=70', 
         detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kl6wx3k0/sandwich-maker/8/r/d/sandwich-01-flipkart-smartbuy-original-imagydds4zthxt8z.jpeg?q=70',
         title: {
             shortTitle: 'Sandwich Makers',
@@ -33,26 +33,26 @@ export const products = [
         discount: 'From 99+5% Off', 
         tagline: 'Pestige, Nova & more' 
     },
-    // { 
-    //     id: 'product3',
-    //     url: 'https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
-    //     detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
-    //     title: {
-    //         shortTitle: 'Fitness Gear',
-    //         longTitle: 'AJRO DEAL New Adjustable Single Resistance Tube (Multicolor) Resistance Tube  (Multicolor)'
-    //     }, 
-    //     price: {
-    //         mrp: 499,
-    //         cost: 166,
-    //         discount: '66%'
-    //     },
-    //     description: 'This unique product can tone your back muscles, reduce belly fat, improve blood circulation and also improves your body posture. It increases the stamina, energy and vitality of the body. The elastic resistance of the rubber training rope can be used to train and exercise in whichever way you want, according to your physical needs.',
-    //     discount: 'Upto 70% Off', 
-    //     tagline: 'Deal of the Day' 
-    // },
     { 
-        id: 'product4',
-        url: 'https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/Oct/Jupiter23/Kitchen/QC_PC_372x232_3_2x._SY232_CB573884255_.jpg', 
+         id:"products3",
+        url: 'https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
+        detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
+        title: {
+            shortTitle: 'Fitness Gear',
+            longTitle: 'AJRO DEAL New Adjustable Single Resistance Tube (Multicolor) Resistance Tube  (Multicolor)'
+        }, 
+        price: {
+            mrp: 499,
+            cost: 166,
+            discount: '66%'
+        },
+        description: 'This unique product can tone your back muscles, reduce belly fat, improve blood circulation and also improves your body posture. It increases the stamina, energy and vitality of the body. The elastic resistance of the rubber training rope can be used to train and exercise in whichever way you want, according to your physical needs.',
+        discount: 'Upto 70% Off', 
+        tagline: 'Deal of the Day' 
+    },
+    { 
+         id:"products4",
+        url: 'https://rukminim1.flixcart.com/image/300/300/kll7bm80/smartwatch/c/1/n/43-mo-sw-sense-500-android-ios-molife-original-imagyzyycnpujyjh.jpeg?q=70', 
         detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kll7bm80/smartwatch/c/1/n/43-mo-sw-sense-500-android-ios-molife-original-imagyzyycnpujyjh.jpeg?q=70',
         title: {
             shortTitle: 'Smart Watches',
@@ -68,8 +68,8 @@ export const products = [
         tagline: 'Best Seller' 
     },
     { 
-        id: 'product5',
-        url: 'https://images-eu.ssl-images-amazon.com/images/G/31/Symbol/2023/Jupiter23/Phase3/Desktop_QC/PB/2x_2._SY232_CB575534905_.png',
+         id:"products5",
+        url: 'https://rukminim1.flixcart.com/image/416/416/k3uhhu80/hair-dryer/n/m/t/nova-2800-w-professional-nhp-8220-original-imafmvwfhmzsxdrw.jpeg?q=70',
         detailUrl: 'https://rukminim1.flixcart.com/image/416/416/k3uhhu80/hair-dryer/n/m/t/nova-2800-w-professional-nhp-8220-original-imafmvwfhmzsxdrw.jpeg?q=70', 
         title: {
             shortTitle: 'Trimmers, Dryers & more',
@@ -84,4 +84,6 @@ export const products = [
         discount: 'From ₹499', 
         tagline: 'Kubra, Nova & more' 
     }
-]
+];
+
+module.exports = products;

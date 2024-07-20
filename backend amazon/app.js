@@ -1,10 +1,27 @@
 require("dotenv").config();
-const express= require('express');
+const express = require("express");
 const app= express();
+const cookieparser= require("cookie-parser")
+const cors= require("cors");
+require("./db/conn")
 
-const port=8005;
+const mongoose= require("mongoose");
 
+app.use(express.json());
+app.use(cors({
+    // origin: "http://localhost:8005"
+}))
+app.use(cookieparser(""))
+
+
+const router= require('./routes/router')
+
+const Products= require("./models/productsSchema");
+const DefaultData= require("./defaultdata")
+const port =8005;
+app.use(router);
 app.listen(port,()=>{
-    console.log(`server listening to ${port}`);
-    
-})
+    console.log(`your server is running on port ${port} `);
+});
+DefaultData();
+console.log("broo")

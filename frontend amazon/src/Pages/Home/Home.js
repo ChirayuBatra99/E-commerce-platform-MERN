@@ -7,6 +7,8 @@ import Slide from '../Slide/Slide'
 import { products } from '../Slide/productdata'
 import Footer from './Footer'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 function Home() {
   return (
     <div>
