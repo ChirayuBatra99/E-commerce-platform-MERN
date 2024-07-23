@@ -5,7 +5,7 @@ const USER = require("../models/userSchema.js")
 const bcrypt = require("bcryptjs")
 const authenticate = require("../middleware/authenticate.js")
 const jwt =  require("jsonwebtoken");
-const secretKey= process.env.KEY;
+// const secretKey= process.env.KEY;
 
 router.get("/getproducts", async(req, res)=>{
     try{
@@ -81,7 +81,7 @@ router.post("/login", async(req,res) => {
     }
     try{
         const userlogin= await USER.findOne({email: email});
-        console.log("userlogin",userlogin);
+        // console.log("userlogin",userlogin);
         if(userlogin)
         {
             const isMatch= await bcrypt.compare(password, userlogin.password);
@@ -89,12 +89,11 @@ router.post("/login", async(req,res) => {
 
             const token = await userlogin.generateAuthtoken();
             console.log("3",token);
-            res.cookie("ecommerce",token,{
+            res.cookie("Amazonweb",token,{
                 expires: new Date(Date.now() + 900000),
                 httpOnly: true,
             });
-            // console.log("cookie",res)
-
+            console.log("cookie sent");
             if(!isMatch)
             {
                 console.log("invalid creds passed")
@@ -118,18 +117,18 @@ router.post("/login", async(req,res) => {
 })
 
 router.post("/addcart/:id",authenticate, async(req, res)=>{
-    console.log("hi")
+    console.log("addcart/id api is being called")
     try{
-        const {id}= req.params;
-        console.log(id);
-        const UserContact= await Products.findOne({_id:id});
-        console.log("uc",UserContact);
+        const {id} = req.params;
+        const cart = await Products.findOne({_id:id});
+        const UserContact= await USER.findOne({_id:req.userID});
         if(UserContact)
         {
-            // const cartData= await UserContact.addcartdata(cart);
-            // await UserContact.save();
-            // console.log(cartData);
-            // res.status(201).json(UserContact);
+            console.log("cart",cart);
+            const cartData= await UserContact.addcartdata(cart);
+            await UserContact.save();
+            console.log(cartData);
+            res.status(201).json(UserContact);
             console.log("going in this API addcart")
         }
         else
@@ -143,4 +142,17 @@ router.post("/addcart/:id",authenticate, async(req, res)=>{
     }
 })
 
+router.get("/cartdetails", authenticate, async(req, res)=>{
+    try{
+        const buyuser= await User.findOne({_id: req.userID});
+        console.log(buyuser,"this guy is buying something");
+        res.status(201).json(buyuser)
+    }
+    catch(error){
+        console.log(error, "error at cartdetails route");
+    }
+});
+
 module.exports = router;
+
+

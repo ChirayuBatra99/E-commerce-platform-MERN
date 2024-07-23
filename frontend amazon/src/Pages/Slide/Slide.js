@@ -41,7 +41,7 @@ function Slide() {
 
     const handleClick=(e)=>{
         // navigate(`/getproductsone/${e}`)
-        navigate(`/buynow/${e}`)
+        navigate(`/getproductsone/${e}`)
         console.log("prodcut data",e);
       }
   
@@ -88,37 +88,6 @@ const {carts}= useSelector((state)=> state.allCart);
 
 
 
-    const send=async(id)=>{
-        // console.log(e)
-        dispatch(addToCart(id))
-        toast("Item added successfully")
-        console.log("item added")
-        console.log("answer=",carts)
-
-        console.log(id._id);
-        const check= await fetch(`${baseURL}/addcart/${id._id}`,{
-            method: "POST",
-            headers: {
-                // Accept: "application/json",
-                "Content-Type": "application.json"
-            },
-            body: JSON.stringify({
-                id
-            }),
-            // credentials: "include"
-        });
-        const data1 = await check.json();
-        console.log("data from cart page", data1);
-        if(check.status !== 201)
-        {
-            alert("no data available");
-        }
-        else
-        {
-            // setAccount(data1);
-            // history.pushState("/buynow")
-        }
-    }
 
 
 
@@ -158,7 +127,7 @@ const {carts}= useSelector((state)=> state.allCart);
                                 <p className='products_name'>{e.title.shortTitle}</p>
                                 <p className='products_offer'>{e.discount}</p>
                                 <p className='products_explore'>{e.tagline}</p>
-                                <button onClick={()=>send(e)}>Add to cart</button>
+                                {/* <button onClick={()=>send(e)}>Add to cart</button> */}
                             </div>
                 ))  }
 

@@ -60,7 +60,9 @@ userSchema.pre("save", async function(next) {
 
 userSchema.methods.generateAuthtoken = async function(){
     try{
-        let token_one= jwt.sign({_id:this._id},secretKey);
+        let token_one= jwt.sign({_id:this._id},secretKey,{
+            // expiresIn:"1d"
+        });
         this.tokens = this.tokens.concat({token: token_one})
         await this.save();
         return token_one;
@@ -75,10 +77,12 @@ userSchema.methods.addcartdata = async function(cart){
     try{
         this.carts = this.carts.concat(cart);
         await this.save();
+        console.log("saving bro");
+        console.log(this.carts)
         return this.carts;
     }
     catch(error){
-        console.log(error);
+        console.log("error here bro",error);
     }
 }
 

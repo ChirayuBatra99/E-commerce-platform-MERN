@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import  {Logincontext}  from '../../Components/context/Contextprovider';
+
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from './signin.module.scss'
 const baseURL = 'http://localhost:8005'
 
 function SignIn() {
+  const {account, setAccount}= useContext(Logincontext)
 
   const navigate = useNavigate();
   const [logData, setData] = useState({
@@ -36,7 +39,7 @@ function SignIn() {
         },
         body: JSON.stringify({
           email, password
-        })
+        }),
       });
       const data = await res.json();
       if (res.status === 400 || !data) {
@@ -44,8 +47,11 @@ function SignIn() {
       }
       else {
         console.log("data valid")
+        setAccount(data);
+
         setData({ ...logData, email: "", password: "" })
         console.log(data);
+        navigate("/")
       }
     }
     catch (error) {

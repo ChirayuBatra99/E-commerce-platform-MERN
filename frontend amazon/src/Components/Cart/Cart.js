@@ -11,11 +11,12 @@ const Cart = () => {
 
     // const dispatch = useDispatch();
     const [price, setPrice] = useState(0);
-    const { carts } = useSelector((state) => state.allCart);
+    // const { carts } = useSelector((state) => state.allCart);
     const {id}= useParams("");
     const [indData, setIndData]= useState("");
     const baseURL= 'http://localhost:8005'
-    // const {account, setAccount}= useContext(Logincontext); //this line causing error
+    const {account, setAccount}= useContext(Logincontext);
+     //this line causing error
     // const history= useHistory();
 
     const getIndData = async()=>{
@@ -47,11 +48,13 @@ const Cart = () => {
 
    const addToCart= async(id)=>{
         console.log(id);
+        console.log("account", account)
+        console.log("acc ends");
         const check= await fetch(`/addcart/${id}`,{
-            method: "POST",
+            method: 'POST',
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application.json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 indData
@@ -66,7 +69,7 @@ const Cart = () => {
         }
         else
         {
-            // setAccount(data1);
+            setAccount(data1);
             // history.pushState("/buynow")
         }
    }
@@ -75,38 +78,19 @@ const Cart = () => {
         <div>
             <div className={styles.cartContainer}>
                 
-                {console.log("cart=", carts)}
+                {/* {console.log("cart=", carts)} */}
             </div>
             <div>
                 {indData._id}<br/>{indData.id}<br/>
+                <button onClick={()=> addToCart(indData._id)}>Add to cart</button>
             </div>
            
-            <div>
-                {
-                    carts.map((data1, index) => {
-                        return (
-                            <>
-                                <tr>
-                                    {/* <td>na</td>
-                                    <td>img</td> */}
-                                    <td>{data1.id}</td>
-
-                                    <td>{data1.description}</td>
-                                    <td>{data1.tagline}</td>
-                                    <button>Buy Now</button>
-                                    <button>Add to Cart</button>
-                                    {/* <td> <button onClick={()=>decreaseItem(data)}>-</button>{data.qnty} <button onClick={()=>increaseItem(data)}>+</button></td> */}
-                                    {/* <td>{data.qnty * data.price}</td> */}
-                                </tr>
-                                <p></p>
-                            </>
-                        )
-                    })
-                }
-            </div>
+            
         </div>
     )
 }
 
 export default Cart
+
+
 
