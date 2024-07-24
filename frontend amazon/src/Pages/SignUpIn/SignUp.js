@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import styles from './signup.module.scss'
 
 function SignUp() {
   const baseURL= 'http://localhost:8005'
@@ -57,59 +58,59 @@ function SignUp() {
   };
 
   return (
-    <div>
-      hemlo
+    <div className={styles.box}>
+      Sign Up
       <input
-      className='name-input'
+      className={styles.inputs}
       type="text" 
       id="name" 
       name="fname"
       value={udata.fname}
-       placeholder='name' 
+       placeholder='Enter your name' 
       onChange={adddata}
       />
 
       <input
-      className='phone-input'
+      className={styles.inputs}
       type="number" 
       id="phone" 
       name="mobile"
       value={udata.mobile}
-       placeholder='phone' 
+       placeholder='Enter your phone' 
       onChange={adddata}
       />
 
       <input
-      className='email-input'
+      className={styles.inputs}
       type="email" 
       id="email" 
       name="email"
       value={udata.email}
-       placeholder='email' 
+       placeholder='Enter your email' 
       onChange={adddata}
       />
 
       <input
-      className='password-input'
+      className={styles.inputs}
       type="password" 
       id="password" 
       name="password"
       value={udata.password}
-       placeholder='password' 
+       placeholder='Enter your password' 
       onChange={adddata}
       />
 
       <input
-      className='password-input'
+      className={styles.inputs}
       type="password" 
       id="cpassword" 
       name="cpassword"
       value={udata.cpassword}
-       placeholder='cpassword' 
+       placeholder='Re-enter password' 
       onChange={adddata}
       />
 
-<button className='submit-button' onClick={sendData} type="submit"> Continue</button>
+<button className={styles.buttonStyle} onClick={sendData} type="submit"> Continue</button>
  
     </div>
   )

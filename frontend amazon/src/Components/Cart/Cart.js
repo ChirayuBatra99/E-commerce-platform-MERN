@@ -81,7 +81,9 @@ const Cart = () => {
                 {/* {console.log("cart=", carts)} */}
             </div>
             <div>
-                {indData._id}<br/>{indData.id}<br/>
+                <h3>{indData.id}</h3>
+
+                {indData._id}<br/>
                 <button onClick={()=> addToCart(indData._id)}>Add to cart</button>
             </div>
            
