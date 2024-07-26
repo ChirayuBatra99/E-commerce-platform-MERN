@@ -185,14 +185,21 @@ router.get("/validuser", authenticate, async(req, res)=>{
 });
 
 
-// router.get("logout", authenticate, async(req, res)=>{
-//     try{
-
-//     }
-//     catch(error){
-
-//     }
-// });
+router.get("/logout", authenticate, async(req, res)=>{
+    try{
+        req.rootUser.tokens = req.rootUser.tokens.filter((curel)=>{
+            return req.token != curel.token
+        });
+        res.clearCookie("Amazonweb", { path: "/" });
+        req.rootUser.save();
+        res.status(201).json(req.rootUser.tokens);
+        console.log("user logged out");
+    }
+    catch(error){
+        res.status(400).json({error: "failed here"})
+        console.log(error, "error in logging out");
+    }
+});
 
 module.exports = router;
 

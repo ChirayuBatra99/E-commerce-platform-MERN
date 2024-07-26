@@ -27,8 +27,30 @@ const getDetailsValidUser = async()=>{
   
 }
 
-function logoutFun(){
-
+const logoutFun= async()=>{
+  try{
+      const res= await fetch("/logout", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+          credentials: "include"
+      })
+      const data= await res.json();
+      if(res.status !==201)
+      {
+        console.log("error occured in logging out bro");
+        // throw error;
+      }
+      else{
+          setAccount(false);
+          console.log("successfully logged out");
+      }
+  }
+  catch(error){
+    console.log("error in logging out");
+  }
 }
 
   return(
