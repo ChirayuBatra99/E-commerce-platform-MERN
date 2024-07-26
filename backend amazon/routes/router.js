@@ -27,7 +27,7 @@ router.get("/getproductsone/:id", async(req,res)=>{
         const {id}= req.params;
         // const individualdata= await Products.find({_id: id});
         const individualdata= await Products.findById(id);
-        console.log(individualdata);
+        // console.log(individualdata);
         res.status(201).json(individualdata);
     }
     catch(error)
@@ -72,7 +72,7 @@ router.post("/register", async(req,res)=>{
 })
 
 router.post("/login", async(req,res) => {
-    console.timeLog(req.body)
+    // console.timeLog(req.body)
     const {email, password} = req.body;
     if(!email || !password)
     {
@@ -85,10 +85,10 @@ router.post("/login", async(req,res) => {
         if(userlogin)
         {
             const isMatch= await bcrypt.compare(password, userlogin.password);
-            console.log("2",isMatch)
+            // console.log("2",isMatch)
 
             const token = await userlogin.generateAuthtoken();
-            console.log("3",token);
+            // console.log("3",token);
             res.cookie("Amazonweb",token,{
                 expires: new Date(Date.now() + 900000),
                 httpOnly: true,
@@ -124,10 +124,10 @@ router.post("/addcart/:id",authenticate, async(req, res)=>{
         const UserContact= await USER.findOne({_id:req.userID});
         if(UserContact)
         {
-            console.log("cart",cart);
+            // console.log("cart",cart);
             const cartData= await UserContact.addcartdata(cart);
             await UserContact.save();
-            console.log(cartData);
+            // console.log(cartData);
             res.status(201).json(UserContact);
             console.log("going in this API addcart")
         }
@@ -144,14 +144,53 @@ router.post("/addcart/:id",authenticate, async(req, res)=>{
 
 router.get("/cartdetails", authenticate, async(req, res)=>{
     try{
-        const buyuser= await User.findOne({_id: req.userID});
-        console.log(buyuser,"this guy is buying something");
+        const buyuser= await USER.findOne({_id: req.userID});
+        // console.log(buyuser,"this guy is buying something");
         res.status(201).json(buyuser)
     }
     catch(error){
         console.log(error, "error at cartdetails route");
     }
 });
+
+router.get("/validuser", authenticate, async(req, res)=>{
+    try {
+        const validUserOne= await USER.findOne({_id: req.userID});
+        console.log(validUserOne, "validuser api in router page");
+        res.status(201).json(validUserOne);
+    }
+    catch(error)
+    {
+        console.log(error, "error in catch block of validuser api router page");
+    }
+});
+
+router.get("remove/:id", authenticate, async(req,res)=>{
+    try{
+        console.log("here bro1");
+        const {id} = req.params;
+        req.rootUser.carts = req.rootUser.carts.filter((curel)=>{
+            return curel.id != id;
+        });
+        req.rootUser.save();
+        console.log("here bro");
+        res.status(201).json(req.rootUser);
+        console.log("item removed");
+    }
+    catch(error){
+        console.log(error, "error in router page at remove api");
+        res.status(400).json(error);
+    }
+});
+
+// router.get("logout", authenticate, async(req, res)=>{
+//     try{
+
+//     }
+//     catch(error){
+
+//     }
+// });
 
 module.exports = router;
 

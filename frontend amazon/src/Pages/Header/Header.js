@@ -9,14 +9,26 @@ import { useNavigate } from 'react-router-dom';
 import { Logincontext } from '../../Components/context/Contextprovider';
 
 function Header() {
-  // const {account, setAccount}= useContext(Logincontext)
+  const {account, setAccount}= useContext(Logincontext)
   const navigate= useNavigate();
 
   function navi(){
+    
     navigate('/signin');
 }
 function navi2(){
-  navigate('/cart');
+  if(account)
+    navigate('/buynow');
+  else  
+    navigate('/signin')
+}
+
+const getDetailsValidUser = async()=>{
+  
+}
+
+function logoutFun(){
+
 }
 
   return(
@@ -29,6 +41,8 @@ function navi2(){
      <Button onClick={navi}>Hello, sign in</Button>
      <Button>Return and orders</Button>
      <ShoppingBasketIcon onClick={navi2}/>
+     <h3>{account?account.fname[0]:<p>User </p>}</h3>
+     <h3 onClick={()=>logoutFun()}>Logout</h3>
       </div>
 
     <Newnav/>
