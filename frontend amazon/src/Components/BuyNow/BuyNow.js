@@ -31,14 +31,17 @@ function BuyNow() {
   const handleRemove = async(id)=>{
     try{
     const res= await fetch(`/remove/${id}`, {
-      method: "GET",
+      method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       credentials: "include"
     })
+    console.log(res.status);
     const data= await res.json();
+    console.log(data);
+
     setAccount(data);
     getDataBuy();
     console.log("item removed from cart");
@@ -60,7 +63,8 @@ function BuyNow() {
             credentials: "include"
         })
         const data= await res.json();
-        if(res!==201)
+        console.log(data);
+        if(res.status !== 201)
             console.log("error occured in buynow page line 63");
         else
           setCartData(data.carts);

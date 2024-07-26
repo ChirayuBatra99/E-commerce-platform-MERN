@@ -116,6 +116,25 @@ router.post("/login", async(req,res) => {
     }   
 })
 
+router.delete("/remove/:id", authenticate, async(req,res)=>{
+    try{
+        console.log("here bro1");
+        const {id} = req.params;
+        req.rootUser.carts = req.rootUser.carts.filter((curel)=>{
+            return curel.id != id;
+        });
+        req.rootUser.save();
+        console.log("here bro");
+        res.status(201).json(req.rootUser);
+        console.log("item removed");
+    }
+    catch(error){
+        console.log(error, "error in router page at remove api");
+        res.status(400).json(error);
+    }
+});
+
+
 router.post("/addcart/:id",authenticate, async(req, res)=>{
     console.log("addcart/id api is being called")
     try{
@@ -165,23 +184,6 @@ router.get("/validuser", authenticate, async(req, res)=>{
     }
 });
 
-router.get("remove/:id", authenticate, async(req,res)=>{
-    try{
-        console.log("here bro1");
-        const {id} = req.params;
-        req.rootUser.carts = req.rootUser.carts.filter((curel)=>{
-            return curel.id != id;
-        });
-        req.rootUser.save();
-        console.log("here bro");
-        res.status(201).json(req.rootUser);
-        console.log("item removed");
-    }
-    catch(error){
-        console.log(error, "error in router page at remove api");
-        res.status(400).json(error);
-    }
-});
 
 // router.get("logout", authenticate, async(req, res)=>{
 //     try{
