@@ -6,13 +6,13 @@ function Newnav() {
     <div className='new-nav'>
         <div className={styles.navdata}>
             <div className={styles.leftdata}>
-                <p>All</p>
-                <p>Mobile</p>
-                <p>Groccery</p>
-                <p>Fashion</p>
-                <p>Prime</p>
-                <p>Amazon Pay</p>
-                <p>Electronics</p>
+                <p className={styles.onHover}>All</p>
+                <p className={styles.onHover}>Mobile</p>
+                <p className={styles.onHover}>Groccery</p>
+                <p className={styles.onHover}>Fashion</p>
+                <p className={styles.onHover}>Prime</p>
+                <p className={styles.onHover}>Amazon Pay</p>
+                <p className={styles.onHover}>Electronics</p>
                 </div>
         
         <div className={styles.rightdata}>
