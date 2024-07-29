@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import styles from './signup.module.scss'
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const baseURL= 'http://localhost:8005'
+  const navigate = useNavigate();
 
   const [udata, setUdata]= useState({
     fname: "",
@@ -11,6 +13,10 @@ function SignUp() {
     password: "",
     cpassword: ""
   });
+
+  const handleSignIn=()=>{
+    navigate("/signin")
+  }
 
   const sendData= async(e)=>{
     e.preventDefault();
@@ -59,9 +65,14 @@ function SignUp() {
 
   return (
     <div className={styles.box}>
-      Sign Up
+          <div className={styles.container}>
+          <div className={styles.header}>Amazon</div>
+          <h1 className={styles.title}>Sign Up</h1>
+          <h3 className={styles.subtitle}>Email or mobile phone number</h3>
+          <div className={styles.inputs}>
+
       <input
-      className={styles.inputs}
+      className={styles.inputField}
       type="text" 
       id="name" 
       name="fname"
@@ -71,7 +82,7 @@ function SignUp() {
       />
 
       <input
-      className={styles.inputs}
+      className={styles.inputField}
       type="number" 
       id="phone" 
       name="mobile"
@@ -81,7 +92,7 @@ function SignUp() {
       />
 
       <input
-      className={styles.inputs}
+      className={styles.inputField}
       type="email" 
       id="email" 
       name="email"
@@ -91,7 +102,7 @@ function SignUp() {
       />
 
       <input
-      className={styles.inputs}
+      className={styles.inputField}
       type="password" 
       id="password" 
       name="password"
@@ -101,7 +112,7 @@ function SignUp() {
       />
 
       <input
-      className={styles.inputs}
+      className={styles.inputField}
       type="password" 
       id="cpassword" 
       name="cpassword"
@@ -109,9 +120,11 @@ function SignUp() {
        placeholder='Re-enter password' 
       onChange={adddata}
       />
-
-<button className={styles.buttonStyle} onClick={sendData} type="submit"> Continue</button>
- 
+    </div>
+<button className={styles.submitButton} onClick={sendData} type="submit"> Continue</button>
+<h2 className={styles.newUser} onClick={handleSignIn}>Already have an account?</h2>
+{/* <button className={styles.createAccount} onClick={handleSignIn} type="button">Click </button> */}
+    </div>
     </div>
   )
 }

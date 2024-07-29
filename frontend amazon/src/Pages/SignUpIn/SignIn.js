@@ -60,38 +60,68 @@ function SignIn() {
   }
 
   return (
+    // <div className={styles.box}>
+    //   Amazon
+    //   <h1>Sign In</h1>
+    //   <h3>Email or mobile phone number</h3>
+    //   <div className={styles.inputs}>
+    //   <input
+    //     className={module.inputfield}
+    //     type="email"
+    //     name="email"
+    //     id="email"
+    //     value={logData.email}
+    //     placeholder='email'
+    //     onChange={adddata}
+    //   />
+
+    //   <input
+    //     className={module.inputfield}
+    //     type="password"
+    //     name="password"
+    //     id="password"
+    //     value={logData.password}
+    //     placeholder='password'
+    //     onChange={adddata}
+    //   />
+    //   </div>
+    //   <button className='submit-button' onClick={handleSubmit} type="submit"> Continue</button>
+
+    //   <h2>New to Amazon?</h2>
+    //   <button className='create-account' onClick={handleCreate} type="submit"> Create your Amazon account</button>
+
+
+    // </div>
     <div className={styles.box}>
-      Amazon
-      <h1>Sign In</h1>
-      <h3>Email or mobile phone number</h3>
+    <div className={styles.container}>
+      <div className={styles.header}>Amazon</div>
+      <h1 className={styles.title}>Sign In</h1>
+      <h3 className={styles.subtitle}>Email or mobile phone number</h3>
       <div className={styles.inputs}>
-      <input
-        className={module.inputfield}
-        type="email"
-        name="email"
-        id="email"
-        value={logData.email}
-        placeholder='email'
-        onChange={adddata}
-      />
-
-      <input
-        className={module.inputfield}
-        type="password"
-        name="password"
-        id="password"
-        value={logData.password}
-        placeholder='password'
-        onChange={adddata}
-      />
+        <input
+          className={styles.inputField}
+          type="email"
+          name="email"
+          id="email"
+          value={logData.email}
+          placeholder="Email"
+          onChange={adddata}
+        />
+        <input
+          className={styles.inputField}
+          type="password"
+          name="password"
+          id="password"
+          value={logData.password}
+          placeholder="Password"
+          onChange={adddata}
+        />
       </div>
-      <button className='submit-button' onClick={handleSubmit} type="submit"> Continue</button>
-
-      <h2>New to Amazon?</h2>
-      <button className='create-account' onClick={handleCreate} type="submit"> Create your Amazon account</button>
-
-
+      <button className={styles.submitButton} onClick={handleSubmit} type="button">Continue</button>
+      <h2 className={styles.newUser}>New to Amazon?</h2>
+      <button className={styles.createAccount} onClick={handleCreate} type="button">Create your Amazon account</button>
     </div>
+  </div>
   )
 }
 

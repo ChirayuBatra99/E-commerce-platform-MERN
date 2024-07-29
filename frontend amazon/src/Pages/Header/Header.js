@@ -57,14 +57,15 @@ const logoutFun= async()=>{
     <div>
       <div className={styles.container}>
       <img  className={styles.logo} src={Logo} alt="Logo" />
-     <input placeholder='search'></input>
+     <input className={styles.searchBar} placeholder='search'></input>
      <SearchIcon/>
      {/* <div> */}
      <Button onClick={navi}>Hello, sign in</Button>
      <Button>Return and orders</Button>
-     <ShoppingBasketIcon onClick={navi2}/>
-     <h3>{account?account.fname[0]:<p>User </p>}</h3>
-     <h3 onClick={()=>logoutFun()}>Logout</h3>
+
+     <Button><h3>{account?account.fname[0]:<p>User </p>}</h3></Button>
+     <Button onClick={navi2}>Cart <ShoppingBasketIcon /></Button>
+     <Button><h3 onClick={()=>logoutFun()}>Logout</h3></Button>
       </div>
 
     <Newnav/>

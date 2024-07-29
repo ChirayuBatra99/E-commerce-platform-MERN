@@ -96,7 +96,7 @@ const {carts}= useSelector((state)=> state.allCart);
         <div className='product-sectin'>
             <div className='products-dea'>
                 <h3>Deal of the day</h3>
-                <button className="btn btn-primary">Priaamary</button>
+                {/* <button className="btn btn-primary">Priaamary</button> */}
                 {/* {console.log("hemlo", products)} */}
                 <Divider />
 
@@ -121,12 +121,15 @@ const {carts}= useSelector((state)=> state.allCart);
                             // <NavLink to=
                             <div className={styles.productsitems}>
                                 <div className={styles.product_img}>
-                                    <img  alt="product image" onClick={()=>handleClick(e._id)} />
+                                    <img className={styles.indImage} src={e.url} alt="product image" onClick={()=>handleClick(e._id)} />
                                 </div>
-                                
-                                <p className='products_name'>{e.title.shortTitle}</p>
-                                <p className='products_offer'>{e.discount}</p>
-                                <p className='products_explore'>{e.tagline}</p>
+                                <p className={styles.products_name}>{e.title.longTitle}</p>
+                                <div style={{display: 'flex', flexDirection: 'row', alignItems:'flex-end'}}>
+                                <p className={styles.products_name}>₹{e.price.cost} </p>
+                                <p className={styles.price_tag}> {e.discount}</p>
+                                </div>
+                                {/* <p className='products_offer'>{e.discount}</p> */}
+                                <p className={styles.tag}>{e.tagline}</p>
                                 {/* <button onClick={()=>send(e)}>Add to cart</button> */}
                             </div>
                 ))  }
