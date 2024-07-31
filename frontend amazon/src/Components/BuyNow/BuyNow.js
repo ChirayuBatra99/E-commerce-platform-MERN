@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Options from './Options'
 import Subtotal from './Subtotal'
 import { Logincontext } from '../../Components/context/Contextprovider';
+import styles from './buynow.module.scss'
 
 function BuyNow() {
 
@@ -43,7 +44,7 @@ function BuyNow() {
     console.log(data);
 
     setAccount(data);
-    getDataBuy();
+    getdatabuy();
     console.log("item removed from cart");
   }
   catch(error)
@@ -52,62 +53,76 @@ function BuyNow() {
   }
   };
 
-  const getDataBuy = async()=>{
-    try{
-        const res = await fetch("/cartdetails", {
-            method: "GET",
-            header: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            }, 
-            credentials: "include"
-        })
-        const data= await res.json();
-        console.log(data);
-        if(res.status !== 201)
-            console.log("error occured in buynow page line 63");
-        else
-          setCartData(data.carts);
-    }
-    catch(error){
-        console.log(error, "error in catch block of getbuydata");
-    }
-  }
+ 
 
   useEffect(() => {
     getdatabuy();
   }, []);
 
   const newLocal = <Options />;
+
+  if(!cartData)
+    return(<div>Loading...</div>)
+  // return (
+  //   <div className={styles.container}>
+  //     <div className='left-buy'>
+  //       <h1>Shopping cart</h1>
+  //       <p>Select all items</p>
+  //       <span className='left-buy-price'>Price</span>
+  //       <p>--------------</p>
+  //       {
+  //         cartData.length>0 ?
+  //           (cartData.map((e, index) => (
+  //             <div style={{display: "flex", flexDirection:"row"}}>
+  //               <div style={{display: "flex"}}>
+  //                 <img src={e.url} alt="image not there"/>
+  //                 <div>
+  //                   {e.title.longTitle} <br/>
+  //                   {e.title.shortTitle} 
+  //                 </div>
+  //               </div>
+  //               <button onClick={()=>{handleRemove(e.id)}}>Remove</button>
+  //             </div>
+  //           ))) :
+  //           <p>Hii</p>
+  //       }
+
+  //     </div>
+
+  //     <div className='item-container'>
+
+  //     </div>
+    
+  //   </div>
+  // )
+  
   return (
-    <div className='buynow-section'>
-      <div className='left-buy'>
+    <div className={styles.container}>
+      <div className={styles.leftBuy}>
         <h1>Shopping cart</h1>
         <p>Select all items</p>
-        <span className='left-buy-price'>Price</span>
-        <p>--------------</p>
+        <span className={styles.leftBuyPrice}>Price</span>
+        <p className={styles.separator}>--------------</p>
         {
-          cartData.length>0 ?
+          cartData.length > 0 ?
             (cartData.map((e, index) => (
-              <div style={{display: "flex", flexDirection:"row"}}>
-                <p>
-                  {e.id}
-                </p>
-                <button onClick={()=>{handleRemove(e.id)}}>Remove</button>
+              <div className={styles.cartItem} key={index}>
+                <div className={styles.cartItemDetails}>
+                  <img src={e.url} alt="image not there" className={styles.cartItemImage} />
+                  <div className={styles.cartItemText}>
+                    <span>{e.title.longTitle}</span> <br />
+                    <span>{e.title.shortTitle}</span>
+                  </div>
+                </div>
+                <button className={styles.removeButton} onClick={() => { handleRemove(e.id) }}>Remove</button>
               </div>
             ))) :
-            <p>Hii</p>
+            <p></p>
         }
-
       </div>
-
-      <div className='item-container'>
-
-      </div>
-      {/* {newLocal} */}
-      {/* <Subtotal/> */}
     </div>
-  )
+  );
+
 }
 
 export default BuyNow

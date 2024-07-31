@@ -37,7 +37,7 @@ const Cart = () => {
         else
         {
             const data = await res.json();
-            console.log("getinddata",data)
+            console.log("getinddata11",data)
             setIndData(data);
         }
    };
@@ -73,23 +73,28 @@ const Cart = () => {
             // history.pushState("/buynow")
         }
    }
+   if (!indData) {
+    return <div>Loading...</div>; // or any loading spinner/component
+}
 
     return (
-        <div>
-            <div className={styles.cartContainer}>
-                
-                {/* {console.log("cart=", carts)} */}
+        <div className={styles.productContainer}>
+          <div className={styles.imageContainer}>
+            <img src={indData.url}  alt={indData.title.longTitle} className={styles.productImage} />
+          </div>
+          <div className={styles.detailsContainer}>
+            <h2 className={styles.longTitle}>{indData.title.longTitle}</h2>
+            <h3 className={styles.shortTitle}>({indData.title.shortTitle})</h3>
+            <h4 className={styles.price}>₹ {indData.price.mrp}</h4>
+            <div className={styles.buttonContainer}>
+              <button className={styles.buyButton} onClick={() => addToCart(indData._id)}>Buy now</button>
+              <button className={styles.cartButton} onClick={() => addToCart(indData._id)}>Add to cart</button>
             </div>
-            <div>
-                <h3>{indData.id}</h3>
-
-                {indData._id}<br/>
-                <button onClick={()=> addToCart(indData._id)}>Add to cart</button>
-            </div>
-           
-            
+          </div>
         </div>
-    )
+      );
+
+
 }
 
 export default Cart

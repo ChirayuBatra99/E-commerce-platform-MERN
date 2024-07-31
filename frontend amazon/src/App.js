@@ -8,15 +8,17 @@ import SignIn from './Pages/SignUpIn/SignIn.js';
 import SignUp from './Pages/SignUpIn/SignUp.js';
 import Cart from './Components/Cart/Cart.js'
 import BuyNow from './Components/BuyNow/BuyNow.js';
-
+// import Header from './Pages/Header/Header.js'
 function App() {
 
 
   return (
     <div className="App">
         <BrowserRouter>
+        <Header/>
+
         <Routes>
-          <Route path="" element={<div><Header/> <Home/></div> } />
+          <Route path="" element={<div> <Home/></div> } />
           <Route path="/signin" element={<SignIn/>} />
           <Route path="signup" element={<SignUp/>} />
           {/* <Route path="/cart" element={<Cart/>} /> */}

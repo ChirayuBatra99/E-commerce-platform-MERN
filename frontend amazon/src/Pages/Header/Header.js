@@ -56,7 +56,7 @@ const logoutFun= async()=>{
   return(
     <div>
       <div className={styles.container}>
-      <img  className={styles.logo} src={Logo} alt="Logo" />
+      <img  className={styles.logo} onClick={()=>navigate("/")} src={Logo} alt="Logo" />
      <input className={styles.searchBar} placeholder='search'></input>
      <SearchIcon/>
      {/* <div> */}

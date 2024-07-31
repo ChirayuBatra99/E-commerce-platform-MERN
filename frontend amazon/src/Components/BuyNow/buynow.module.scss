@@ -1,0 +1,80 @@
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    background-color: #f6f6f6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leftBuy {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+  }
+  
+  .leftBuy h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .leftBuy p {
+    font-size: 18px;
+    color: #555555;
+  }
+  
+  .leftBuyPrice {
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: auto;
+  }
+  
+  .separator {
+    margin: 15px 0;
+    color: #cccccc;
+    text-align: center;
+  }
+  
+  .cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 15px 0;
+  }
+  
+  .cartItemDetails {
+    display: flex;
+  }
+  
+  .cartItemImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  
+  .cartItemText {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cartItemText span {
+    font-size: 18px;
+    color: #333333;
+  }
+  
+  .removeButton {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .removeButton:hover {
+    background-color: #e68a00;
+  }
+  
