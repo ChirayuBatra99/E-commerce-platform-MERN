@@ -10,8 +10,6 @@ const jwt =  require("jsonwebtoken");
 router.get("/getproducts", async(req, res)=>{
     try{
             const productsdata= await Products.find();
-            // console.log("ye le bro");
-            // console.log(productsdata);
             res.status(201).json(productsdata);
     }
     catch(error)
@@ -202,5 +200,3 @@ router.get("/logout", authenticate, async(req, res)=>{
 });
 
 module.exports = router;
-
-
