@@ -38,6 +38,7 @@
     "webpack": "^5.93.0"
   },
   "scripts": {
+    "install": "npm install --force",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
