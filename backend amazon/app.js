@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use(cors(
     {   
+        origin: ["https://localhost:3000", "https://ecom-chirayu.onrender.com"],
  }
 ))
 
