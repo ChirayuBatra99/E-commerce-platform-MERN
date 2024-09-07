@@ -20,19 +20,7 @@ router.get("/getproducts", async(req, res)=>{
 })
 
 
-router.get("/getproductsone/:id", async(req,res)=>{
-    try{
-        const {id}= req.params;
-        // const individualdata= await Products.find({_id: id});
-        const individualdata= await Products.findById(id);
-        // console.log(individualdata);
-        res.status(201).json(individualdata);
-    }
-    catch(error)
-    {
-        console.log("error");
-    }
-})
+
 
 router.post("/register", async(req,res)=>{
     console.log(req.body);
@@ -132,6 +120,19 @@ router.delete("/remove/:id", authenticate, async(req,res)=>{
     }
 });
 
+router.get("/getproductsone/:id", async(req,res)=>{
+    try{
+        const {id}= req.params;
+        // const individualdata= await Products.find({_id: id});
+        const individualdata= await Products.findById(id);
+        // console.log(individualdata);
+        res.status(201).json(individualdata);
+    }
+    catch(error)
+    {
+        console.log("error");
+    }
+})
 
 router.post("/addcart/:id",authenticate, async(req, res)=>{
     console.log("addcart/id api is being called")

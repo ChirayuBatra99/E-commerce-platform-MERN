@@ -11,11 +11,12 @@ function BuyNow() {
   const baseURL= 'http://localhost:8005'
 
   const getdatabuy = async () => {
-    const res = await fetch("/cartdetails", {
+    const res = await fetch(`${baseURL}/cartdetails`, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        
       },
       credentials: "include"
     })

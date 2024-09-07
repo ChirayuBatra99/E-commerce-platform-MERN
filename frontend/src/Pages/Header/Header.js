@@ -1,77 +1,81 @@
-import {React, useContext } from 'react'
-import Logo from '../../Pics/Amazon-Logo.png'
-import styles from './Header.module.scss'
-import {Button} from '@material-ui/core'; //importing material ui component
+import { React, useContext } from 'react';
+import Logo from '../../Pics/Header-Logo.png';
+import styles from './Header.module.scss';
+import { Button } from '@material-ui/core'; // importing material ui component
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import SearchIcon from '@mui/icons-material/Search';
 import Newnav from '../Newnav/Newnav';
 import { useNavigate } from 'react-router-dom';
 import { Logincontext } from '../../Components/context/Contextprovider';
+const baseURL = 'http://localhost:8005'
 
 function Header() {
-  const {account, setAccount}= useContext(Logincontext)
-  const navigate= useNavigate();
+  const { account, setAccount } = useContext(Logincontext);
+  const navigate = useNavigate();
 
-  function navi(){
-    
+  function navi() {
     navigate('/signin');
-}
-function navi2(){
-  if(account)
-    navigate('/buynow');
-  else  
-    navigate('/signin')
-}
+  }
 
-const getDetailsValidUser = async()=>{
-  
-}
+  function navi2() {
+    if (account) navigate('/buynow');
+    else navigate('/signin');
+  }
 
-const logoutFun= async()=>{
-  try{
-      const res= await fetch("/logout", {
-        method: "GET",
+  const logoutFun = async () => {
+    try {
+      const res = await fetch(`${baseURL}/logout`, {
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-          credentials: "include"
-      })
-      const data= await res.json();
-      if(res.status !==201)
-      {
-        console.log("error occured in logging out bro");
-        // throw error;
-      }
-      else{
-          setAccount(false);
-          console.log("successfully logged out");
-      }
-  }
-  catch(error){
-    console.log("error in logging out");
-  }
-}
+        credentials: 'include',
+      });
+      const data = await res.json();
+      if (res.status !== 201) {
+        console.log('Error occurred in logging out.');
+      } else {
+        setAccount(false);
+        console.log('Successfully logged out.');
+        navigate('/signin');
 
-  return(
+      }
+    } catch (error) {
+      console.log('Error in logging out');
+    }
+  };
+
+  return (
     <div>
       <div className={styles.container}>
-      <img  className={styles.logo} onClick={()=>navigate("/")} src={Logo} alt="Logo" />
-     <input className={styles.searchBar} placeholder='search'></input>
-     <SearchIcon/>
-     {/* <div> */}
-     <Button onClick={navi}>Hello, sign in</Button>
-     <Button>Return and orders</Button>
+        <img className={styles.logo} onClick={() => navigate('/')} src={Logo} alt="Logo" />
 
-     <Button><h3>{account?account.fname[0]:<p>User </p>}</h3></Button>
-     <Button onClick={navi2}>Cart <ShoppingBasketIcon /></Button>
-     <Button><h3 onClick={()=>logoutFun()}>Logout</h3></Button>
+        <div className={styles.searchWrapper}>
+          <input className={styles.searchBar} placeholder="Search"></input>
+          <SearchIcon className={styles.searchIcon} />
+        </div>
+
+        <div className={styles.options}>
+        <Button className={styles.button} onClick={navi2}>
+            Cart <ShoppingBasketIcon />
+          </Button>
+          {/* <Button className={styles.button} onClick={navi}>Hello, Sign In</Button> */}
+          <Button className={styles.button}>Return and Orders</Button>
+          <Button className={styles.button}>{account ? account.fname[0] : <p>User</p>}</Button>
+          <Button className={styles.button} onClick={() => logoutFun()}>Logout</Button>
+
+          {account && (
+            <Button className={styles.button} onClick={() => logoutFun()}>
+              Logout
+            </Button>
+          )}
+        </div>
       </div>
 
-    <Newnav/>
-
+      <Newnav />
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

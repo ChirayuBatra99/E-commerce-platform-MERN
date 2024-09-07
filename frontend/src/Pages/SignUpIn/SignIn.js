@@ -1,5 +1,4 @@
 import  {Logincontext}  from '../../Components/context/Contextprovider';
-
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from './signin.module.scss'
@@ -32,7 +31,7 @@ function SignIn() {
     e.preventDefault();
     const { email, password } = logData;
     try {
-      const res = await fetch(`/login`, {
+      const res = await fetch(`${baseURL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -40,6 +39,8 @@ function SignIn() {
         body: JSON.stringify({
           email, password
         }),
+        credentials: "include"
+        // missing the above line was causing the cors error------>Important note
       });
       const data = await res.json();
       if (res.status === 400 || !data) {
@@ -51,7 +52,7 @@ function SignIn() {
 
         setData({ ...logData, email: "", password: "" })
         console.log(data);
-        navigate("/")
+        navigate("/home")
       }
     }
     catch (error) {

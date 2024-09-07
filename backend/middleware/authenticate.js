@@ -5,7 +5,6 @@ const keysecret = process.env.KEY
 const authenicate = async(req,res,next)=>{
     try {
         const token = req.cookies.Amazonweb;
-        // console.log(token)
         const verifyToken = jwt.verify(token,keysecret);
      
         const rootUser = await User.findOne({_id:verifyToken._id,"tokens.token":token});
@@ -16,7 +15,8 @@ const authenicate = async(req,res,next)=>{
         req.token = token; 
         req.rootUser = rootUser;   
         req.userID = rootUser._id;   
-    
+            console.log("user authenticated")
+
         next();  
 
 

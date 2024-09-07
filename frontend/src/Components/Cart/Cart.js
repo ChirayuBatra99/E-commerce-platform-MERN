@@ -50,7 +50,9 @@ const Cart = () => {
         console.log(id);
         console.log("account", account)
         console.log("acc ends");
-        const check= await fetch(`/addcart/${id}`,{
+
+        try{
+        const check= await fetch(`${baseURL}/addcart/${id}`,{
             method: 'POST',
             headers: {
                 Accept: "application/json",
@@ -61,6 +63,8 @@ const Cart = () => {
             }),
             credentials: "include"
         });
+    
+    
         const data1 = await check.json();
         console.log("data from cart page", data1);
         if(check.status !== 201)
@@ -72,7 +76,21 @@ const Cart = () => {
             setAccount(data1);
             // history.pushState("/buynow")
         }
-   }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+   
+   
+    }
+
+
+
+
+
+
+
    if (!indData) {
     return <div>Loading...</div>; // or any loading spinner/component
 }

@@ -44,6 +44,7 @@ function SignUp() {
             ...udata, fname:"", email:"", mobile: "", password:"", cpassword:""
           })
           console.log("registration done, now fix here with toast");
+          navigate("/home")
 
         }
     }
