@@ -61,38 +61,7 @@ function SignIn() {
   }
 
   return (
-    // <div className={styles.box}>
-    //   Amazon
-    //   <h1>Sign In</h1>
-    //   <h3>Email or mobile phone number</h3>
-    //   <div className={styles.inputs}>
-    //   <input
-    //     className={module.inputfield}
-    //     type="email"
-    //     name="email"
-    //     id="email"
-    //     value={logData.email}
-    //     placeholder='email'
-    //     onChange={adddata}
-    //   />
 
-    //   <input
-    //     className={module.inputfield}
-    //     type="password"
-    //     name="password"
-    //     id="password"
-    //     value={logData.password}
-    //     placeholder='password'
-    //     onChange={adddata}
-    //   />
-    //   </div>
-    //   <button className='submit-button' onClick={handleSubmit} type="submit"> Continue</button>
-
-    //   <h2>New to Amazon?</h2>
-    //   <button className='create-account' onClick={handleCreate} type="submit"> Create your Amazon account</button>
-
-
-    // </div>
     <div className={styles.box}>
     <div className={styles.container}>
       <div className={styles.header}>Amazon</div>

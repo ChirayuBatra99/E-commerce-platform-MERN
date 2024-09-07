@@ -33,23 +33,6 @@ export const products = [
         discount: 'From 99+5% Off', 
         tagline: 'Pestige, Nova & more' 
     },
-    // { 
-    //     id: 'product3',
-    //     url: 'https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
-    //     detailUrl: 'https://rukminim1.flixcart.com/image/416/416/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70', 
-    //     title: {
-    //         shortTitle: 'Fitness Gear',
-    //         longTitle: 'AJRO DEAL New Adjustable Single Resistance Tube (Multicolor) Resistance Tube  (Multicolor)'
-    //     }, 
-    //     price: {
-    //         mrp: 499,
-    //         cost: 166,
-    //         discount: '66%'
-    //     },
-    //     description: 'This unique product can tone your back muscles, reduce belly fat, improve blood circulation and also improves your body posture. It increases the stamina, energy and vitality of the body. The elastic resistance of the rubber training rope can be used to train and exercise in whichever way you want, according to your physical needs.',
-    //     discount: 'Upto 70% Off', 
-    //     tagline: 'Deal of the Day' 
-    // },
     { 
         id: 'product4',
         url: 'https://images-eu.ssl-images-amazon.com/images/G/31/img23/PB/Oct/Jupiter23/Kitchen/QC_PC_372x232_3_2x._SY232_CB573884255_.jpg', 

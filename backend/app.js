@@ -17,15 +17,12 @@ app.use(cors({
 
 app.use(cookieparser(""))
 const router= require('./routes/router')
-
 const USER = require("./models/userSchema.js")
  
 const DefaultData= require("./defaultdata")
 const port =8005;
 app.use(router);
 app.use(bodyParser.json());
-
-// const bodyParser = require("body-parser"); router.use(bodyParser.json());
 
 app.listen(port,()=>{
     console.log(`your server is running on port ${port} `);

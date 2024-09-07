@@ -8,7 +8,7 @@ function BuyNow() {
 
   const [cartData, setCartData] = useState([]);
   const { account, setAccount } = useContext(Logincontext)
-  const baseURL= 'http://localhost:8005'
+  const baseURL = 'http://localhost:8005'
 
   const getdatabuy = async () => {
     const res = await fetch(`${baseURL}/cartdetails`, {
@@ -16,7 +16,7 @@ function BuyNow() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        
+
       },
       credentials: "include"
     })
@@ -30,31 +30,30 @@ function BuyNow() {
     }
   };
 
-  const handleRemove = async(id)=>{
-    try{
-    const res= await fetch(`/remove/${id}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    })
-    console.log(res.status);
-    const data= await res.json();
-    console.log(data);
+  const handleRemove = async (id) => {
+    try {
+      const res = await fetch(`/remove/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      })
+      console.log(res.status);
+      const data = await res.json();
+      console.log(data);
 
-    setAccount(data);
-    getdatabuy();
-    console.log("item removed from cart");
-  }
-  catch(error)
-  {
-    console.log("catch error in buynow page ");
-  }
+      setAccount(data);
+      getdatabuy();
+      console.log("item removed from cart");
+    }
+    catch (error) {
+      console.log("catch error in buynow page ");
+    }
   };
 
- 
+
 
   useEffect(() => {
     getdatabuy();
@@ -62,41 +61,9 @@ function BuyNow() {
 
   const newLocal = <Options />;
 
-  if(!cartData)
-    return(<div>Loading...</div>)
-  // return (
-  //   <div className={styles.container}>
-  //     <div className='left-buy'>
-  //       <h1>Shopping cart</h1>
-  //       <p>Select all items</p>
-  //       <span className='left-buy-price'>Price</span>
-  //       <p>--------------</p>
-  //       {
-  //         cartData.length>0 ?
-  //           (cartData.map((e, index) => (
-  //             <div style={{display: "flex", flexDirection:"row"}}>
-  //               <div style={{display: "flex"}}>
-  //                 <img src={e.url} alt="image not there"/>
-  //                 <div>
-  //                   {e.title.longTitle} <br/>
-  //                   {e.title.shortTitle} 
-  //                 </div>
-  //               </div>
-  //               <button onClick={()=>{handleRemove(e.id)}}>Remove</button>
-  //             </div>
-  //           ))) :
-  //           <p>Hii</p>
-  //       }
+  if (!cartData)
+    return (<div>Loading...</div>)
 
-  //     </div>
-
-  //     <div className='item-container'>
-
-  //     </div>
-    
-  //   </div>
-  // )
-  
   return (
     <div className={styles.container}>
       <div className={styles.leftBuy}>

@@ -5,9 +5,9 @@ const USER = require("../models/userSchema.js")
 const bcrypt = require("bcryptjs")
 const authenticate = require("../middleware/authenticate.js")
 const jwt =  require("jsonwebtoken");
-// const secretKey= process.env.KEY;
+const Popularproducts = require('../models/popularProductsSchema.js');
 
-router.get("/getproducts", async(req, res)=>{
+router.get("/getproducts/dealofday", async(req, res)=>{
     try{
             const productsdata= await Products.find();
             res.status(201).json(productsdata);
@@ -19,6 +19,33 @@ router.get("/getproducts", async(req, res)=>{
     }
 })
 
+router.get("/getproducts/popularproducts", async(req, res)=>{
+    try{
+            const productsdata= await Popularproducts.find();
+            res.status(201).json(productsdata);
+    }
+    catch(error)
+    {
+        console.log("error a gyi");
+        console.log("error message is ", error.message);
+    }
+})
+
+router.post("/tellpopular", async(req,res)=>{
+    try{
+        const {id, url, detailUrl, title, price, description, discount, tagline} = req.body;
+        const popproducts = new Popularproducts({
+            id, url, detailUrl, title, price, description, discount, tagline
+        });
+        const storedata= await popproducts.save();
+        res.status(201).json(storedata);
+
+    }
+    catch(error)
+    {
+
+    }
+})
 
 
 
@@ -120,12 +147,11 @@ router.delete("/remove/:id", authenticate, async(req,res)=>{
     }
 });
 
-router.get("/getproductsone/:id", async(req,res)=>{
+router.get("/getproductsone/dealofday/:id", async(req,res)=>{
+    console.log("hi");
     try{
         const {id}= req.params;
-        // const individualdata= await Products.find({_id: id});
         const individualdata= await Products.findById(id);
-        // console.log(individualdata);
         res.status(201).json(individualdata);
     }
     catch(error)
@@ -134,18 +160,27 @@ router.get("/getproductsone/:id", async(req,res)=>{
     }
 })
 
-router.post("/addcart/:id",authenticate, async(req, res)=>{
-    console.log("addcart/id api is being called")
+router.get("/getproductsone/popularproducts/:id", async(req,res)=>{
+    try{
+        const {id}= req.params;
+        const individualdata= await Popularproducts.findById(id);
+        res.status(201).json(individualdata);
+    }
+    catch(error)
+    {
+        console.log("error");
+    }
+});
+
+router.post("/addcart/dealofday/:id",authenticate, async(req, res)=>{
     try{
         const {id} = req.params;
         const cart = await Products.findOne({_id:id});
         const UserContact= await USER.findOne({_id:req.userID});
         if(UserContact)
         {
-            // console.log("cart",cart);
             const cartData= await UserContact.addcartdata(cart);
             await UserContact.save();
-            // console.log(cartData);
             res.status(201).json(UserContact);
             console.log("going in this API addcart")
         }
@@ -158,12 +193,34 @@ router.post("/addcart/:id",authenticate, async(req, res)=>{
         res.status(401).json({error:"invalid user"});
         console.log("error in catch of addtocart router.js page", error);
     }
-})
+});
+
+router.post("/addcart/popularproducts/:id",authenticate, async(req, res)=>{
+    try{
+        const {id} = req.params;
+        const cart = await Popularproducts.findOne({_id:id});
+        const UserContact= await USER.findOne({_id:req.userID});
+        if(UserContact)
+        {
+            const cartData= await UserContact.addcartdata(cart);
+            await UserContact.save();
+            res.status(201).json(UserContact);
+            console.log("going in this API addcart")
+        }
+        else
+        {
+            res.status(401).json({error:"invalid user"});
+        }
+    }
+    catch(error){
+        res.status(401).json({error:"invalid user"});
+        console.log("error in catch of addtocart router.js page", error);
+    }
+});
 
 router.get("/cartdetails", authenticate, async(req, res)=>{
     try{
         const buyuser= await USER.findOne({_id: req.userID});
-        // console.log(buyuser,"this guy is buying something");
         res.status(201).json(buyuser)
     }
     catch(error){

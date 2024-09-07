@@ -16,10 +16,8 @@ function Home() {
       {/* <img className={styles.pic} src={pic} alt="PIX" /> */}
      <div>
       <Banner/>
-      <Slide products={products}/>
-      {/* <Products/>
-      <Products/> */}
-      <Slide/>
+      <Slide sectionId="dealofday" header="Deal of the day:"/>
+      <Slide sectionId="popularproducts" header="Popular products:" />
       <Footer/>
       </div>
      </div>

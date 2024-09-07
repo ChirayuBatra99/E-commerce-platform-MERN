@@ -9,19 +9,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Cart = () => {
 
-    // const dispatch = useDispatch();
     const [price, setPrice] = useState(0);
-    // const { carts } = useSelector((state) => state.allCart);
-    const {id}= useParams("");
+    const {id, sectionId}= useParams("");
+    
     const [indData, setIndData]= useState("");
     const baseURL= 'http://localhost:8005'
     const {account, setAccount}= useContext(Logincontext);
-     //this line causing error
-    // const history= useHistory();
 
     const getIndData = async()=>{
-
-        const res= await fetch(`${baseURL}/getproductsone/${id}`,{
+        console.log("hiii",id)
+        const res= await fetch(`${baseURL}/getproductsone/${sectionId}/${id}`,{
 
                 method: 'GET',
                 headers: {
@@ -52,7 +49,7 @@ const Cart = () => {
         console.log("acc ends");
 
         try{
-        const check= await fetch(`${baseURL}/addcart/${id}`,{
+        const check= await fetch(`${baseURL}/addcart/${sectionId}/${id}`,{
             method: 'POST',
             headers: {
                 Accept: "application/json",

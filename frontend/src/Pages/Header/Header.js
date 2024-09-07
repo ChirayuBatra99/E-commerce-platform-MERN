@@ -17,7 +17,7 @@ function Header() {
     navigate('/signin');
   }
 
-  function navi2() {
+  function showCart() {
     if (account) navigate('/buynow');
     else navigate('/signin');
   }
@@ -50,20 +50,18 @@ function Header() {
     <div>
       <div className={styles.container}>
         <img className={styles.logo} onClick={() => navigate('/')} src={Logo} alt="Logo" />
-
         <div className={styles.searchWrapper}>
           <input className={styles.searchBar} placeholder="Search"></input>
           <SearchIcon className={styles.searchIcon} />
         </div>
 
         <div className={styles.options}>
-        <Button className={styles.button} onClick={navi2}>
+          
+          <Button className={styles.button} onClick={showCart}>
             Cart <ShoppingBasketIcon />
-          </Button>
-          {/* <Button className={styles.button} onClick={navi}>Hello, Sign In</Button> */}
+          </Button>     
           <Button className={styles.button}>Return and Orders</Button>
-          <Button className={styles.button}>{account ? account.fname[0] : <p>User</p>}</Button>
-          <Button className={styles.button} onClick={() => logoutFun()}>Logout</Button>
+          <Button className={styles.button}>{account ? account.fname[0] : <span>User</span>}</Button>
 
           {account && (
             <Button className={styles.button} onClick={() => logoutFun()}>
