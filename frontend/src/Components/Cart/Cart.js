@@ -4,8 +4,10 @@ import styles from './Cart.module.scss'
 import {  useParams } from 'react-router';
 // import {useHistory} from "react-router-dom";
 import { Logincontext} from "../context/Contextprovider"
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
 
@@ -60,8 +62,9 @@ const Cart = () => {
             }),
             credentials: "include"
         });
-    
-    
+        console.log("item added");
+        
+
         const data1 = await check.json();
         console.log("data from cart page", data1);
         if(check.status !== 201)
@@ -71,6 +74,7 @@ const Cart = () => {
         else
         {
             setAccount(data1);
+            toast("Item added successfully")
             // history.pushState("/buynow")
         }
     }
@@ -105,7 +109,10 @@ const Cart = () => {
               <button className={styles.buyButton} onClick={() => addToCart(indData._id)}>Buy now</button>
               <button className={styles.cartButton} onClick={() => addToCart(indData._id)}>Add to cart</button>
             </div>
+
           </div>
+          <ToastContainer/>
+
         </div>
       );
 

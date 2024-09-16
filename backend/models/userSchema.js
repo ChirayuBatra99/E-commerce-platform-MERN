@@ -78,7 +78,6 @@ userSchema.methods.addcartdata = async function(cart){
         this.carts = this.carts.concat(cart);
         await this.save();
         console.log("saving bro");
-        // console.log(this.carts)
         return this.carts;
     }
     catch(error){

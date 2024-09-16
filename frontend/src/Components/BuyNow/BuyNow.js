@@ -5,10 +5,26 @@ import { Logincontext } from '../../Components/context/Contextprovider';
 import styles from './buynow.module.scss'
 
 function BuyNow() {
-
+  const [totalCost, setTotalCost] = useState(0);
   const [cartData, setCartData] = useState([]);
   const { account, setAccount } = useContext(Logincontext)
   const baseURL = 'http://localhost:8005'
+
+  const groupCartItems = (items) => {
+    const groupedItems = {};
+    let sumOfPrice = 0;
+    items.forEach((item) => {
+      if (groupedItems[item.id]) {
+        groupedItems[item.id].quantity += 1; 
+      } else {
+        groupedItems[item.id] = { ...item, quantity: 1 };
+      }
+      sumOfPrice += item.price.mrp;
+    });
+    setTotalCost(sumOfPrice)
+    return Object.values(groupedItems); 
+  };
+
 
   const getdatabuy = async () => {
     const res = await fetch(`${baseURL}/cartdetails`, {
@@ -16,7 +32,6 @@ function BuyNow() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-
       },
       credentials: "include"
     })
@@ -26,13 +41,14 @@ function BuyNow() {
     }
     else {
       console.log(data.carts);
-      setCartData(data.carts);
+      const groupedData = groupCartItems(data.carts);
+      setCartData(groupedData);
     }
   };
 
   const handleRemove = async (id) => {
     try {
-      const res = await fetch(`/remove/${id}`, {
+      const res = await fetch(`${baseURL}/remove/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -47,9 +63,10 @@ function BuyNow() {
       setAccount(data);
       getdatabuy();
       console.log("item removed from cart");
+
     }
     catch (error) {
-      console.log("catch error in buynow page ");
+      console.log("catch error in buynow page ",error);
     }
   };
 
@@ -80,6 +97,9 @@ function BuyNow() {
                   <div className={styles.cartItemText}>
                     <span>{e.title.longTitle}</span> <br />
                     <span>{e.title.shortTitle}</span>
+                    <p>Cost: {e.price.mrp}</p>
+                    <span>Quantity: {e.quantity}</span>  {/* Display quantity */}
+
                   </div>
                 </div>
                 <button className={styles.removeButton} onClick={() => { handleRemove(e.id) }}>Remove</button>
@@ -87,6 +107,7 @@ function BuyNow() {
             ))) :
             <p></p>
         }
+        <h3>Cart Total: {totalCost}</h3>
       </div>
     </div>
   );

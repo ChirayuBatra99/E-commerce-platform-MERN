@@ -133,13 +133,15 @@ router.delete("/remove/:id", authenticate, async(req,res)=>{
     try{
         console.log("here bro1");
         const {id} = req.params;
-        req.rootUser.carts = req.rootUser.carts.filter((curel)=>{
-            return curel.id != id;
-        });
-        req.rootUser.save();
-        console.log("here bro");
-        res.status(201).json(req.rootUser);
-        console.log("item removed");
+    
+        const itemIndex = req.rootUser.carts.findIndex(curel => curel.id === id);
+        if (itemIndex !== -1) {
+            // Remove only the first occurrence of the item
+            req.rootUser.carts.splice(itemIndex, 1);
+            await req.rootUser.save(); 
+            res.status(201).json(req.rootUser);
+            console.log("Item removed");
+        } 
     }
     catch(error){
         console.log(error, "error in router page at remove api");
