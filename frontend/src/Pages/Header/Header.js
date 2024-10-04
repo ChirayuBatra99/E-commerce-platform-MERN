@@ -49,7 +49,7 @@ function Header() {
   return (
     <div>
       <div className={styles.container}>
-        <img className={styles.logo} onClick={() => navigate('/')} src={Logo} alt="Logo" />
+        <img className={styles.logo} onClick={() => navigate('/home')} src={Logo} alt="Logo" />
         <div className={styles.searchWrapper}>
           <input className={styles.searchBar} placeholder="Search"></input>
           <SearchIcon className={styles.searchIcon} />

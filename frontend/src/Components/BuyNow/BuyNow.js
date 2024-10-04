@@ -78,11 +78,31 @@ function BuyNow() {
       console.log(res.status);
       const data = await res.json();
       console.log(data);
-
       setAccount(data);
       getdatabuy();
       console.log("item removed from cart");
+    }
+    catch (error) {
+      console.log("catch error in buynow page ",error);
+    }
+  };
 
+  const handleAddOne = async (id) => {
+    try {
+      const res = await fetch(`${baseURL}/addone/${id}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      })
+      console.log(res.status);
+      const data = await res.json();
+      console.log(data);
+      setAccount(data);
+      getdatabuy();
+      console.log("item added to cart");
     }
     catch (error) {
       console.log("catch error in buynow page ",error);
@@ -180,18 +200,21 @@ const handlePaymentVerify = async (data) => {
                     <span>{e.title.longTitle}</span> <br />
                     <span>{e.title.shortTitle}</span>
                     <p>Cost: {e.price.mrp}</p>
-                    <span>Quantity: {e.quantity}</span>  {/* Display quantity */}
-
+                    <span>Quantity: {e.quantity}</span> 
                   </div>
                 </div>
-                <button className={styles.removeButton} onClick={() => { handleRemove(e.id) }}>Remove</button>
+                <div>
+                <button className={styles.addButton} onClick={() => { handleAddOne(e.id) }}>+</button>
+                <button className={styles.removeButton} onClick={() => { handleRemove(e.id) }}>-</button>
+                </div>
               </div>
             ))) :
             <p></p>
         }
-        <h3>Cart Total: {totalCost}</h3>
-        <button className={styles.removeButton} onClick={() => { handlePayment() }}>Checkout Cart</button>
-
+        <div className={styles.checkoutContainer}>
+            <h3>Cart Total: {totalCost}</h3>
+            <button className={styles.checkoutButton} onClick={() => { handlePayment() }}>Checkout Cart</button>
+        </div>
       </div>
     </div>
   );

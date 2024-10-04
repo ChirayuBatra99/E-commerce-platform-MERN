@@ -239,6 +239,25 @@ router.delete("/remove/:id", authenticate, async(req,res)=>{
     }
 });
 
+router.post("/addone/:id", authenticate, async(req,res)=>{
+    try{
+        console.log("here");
+        const {id} = req.params;
+        const itemIndex = req.rootUser.carts.findIndex(curel => curel.id === id);
+        if(itemIndex !== -1) {
+            req.rootUser.carts = req.rootUser.carts.concat(req.rootUser.carts[itemIndex]);
+            await req.rootUser.save();
+            res.status(201).json(req.rootUser);
+            console.log("here 2");
+            
+        }        
+    }
+    catch(error) {
+        console.log(error, "error in router page at addone api");
+        res.status(400).json(error);
+    }
+});
+
 router.get("/getproductsone/dealofday/:id", async(req,res)=>{
     console.log("hi");
     try{

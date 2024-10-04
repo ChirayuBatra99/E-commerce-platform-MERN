@@ -82,16 +82,7 @@ const Cart = () => {
     {
         console.log(error);
     }
-   
-   
     }
-
-
-
-
-
-
-
    if (!indData) {
     return <div>Loading...</div>; // or any loading spinner/component
 }

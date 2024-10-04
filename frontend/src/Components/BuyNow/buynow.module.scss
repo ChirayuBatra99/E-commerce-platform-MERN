@@ -73,8 +73,37 @@
     border-radius: 4px;
     font-size: 16px;
   }
+  .addButton{
+    background-color: green;
+    color: white;
+    border: none;
+    margin-right: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+  }
   
   .removeButton:hover {
     background-color: #e68a00;
   }
-  
+  .addButton:hover{
+    background-color: darkgreen;
+  }
+
+  .checkoutContainer{
+    display: flex;
+    flex-direction: column;
+    padding-left: 75%;
+    justify-content: right;
+
+    .checkoutButton{
+      background-color: red;
+      color: white;
+      border: none;
+      margin-right: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;    }
+  }

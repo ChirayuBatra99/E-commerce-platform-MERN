@@ -67,7 +67,7 @@ function SignUp() {
   return (
     <div className={styles.box}>
           <div className={styles.container}>
-          <div className={styles.header}>Amazon</div>
+          <div className={styles.header}>E-Shooping</div>
           <h1 className={styles.title}>Sign Up</h1>
           <h3 className={styles.subtitle}>Email or mobile phone number</h3>
           <div className={styles.inputs}>
