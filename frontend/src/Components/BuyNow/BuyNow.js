@@ -3,6 +3,10 @@ import Options from './Options'
 import Subtotal from './Subtotal'
 import { Logincontext } from '../../Components/context/Contextprovider';
 import styles from './buynow.module.scss'
+import { ToastContainer, toast } from 'react-toastify';
+// import dotenv from 'dotenv'
+// dotenv.config()
+
 
 function BuyNow() {
   const [totalCost, setTotalCost] = useState(0);
@@ -10,6 +14,21 @@ function BuyNow() {
   const { account, setAccount } = useContext(Logincontext)
   const baseURL = 'http://localhost:8005'
 
+  useEffect(() => {
+    // Dynamically load Razorpay script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Fetch cart data when component mounts
+    getdatabuy();
+
+    return () => {
+      document.body.removeChild(script); // Clean up the script on unmount
+    };
+  }, []);
+  
   const groupCartItems = (items) => {
     const groupedItems = {};
     let sumOfPrice = 0;
@@ -70,6 +89,69 @@ function BuyNow() {
     }
   };
 
+  const handlePayment = async () => {
+    const amount = totalCost;
+    try {
+      // console.log("hi");
+        const res = await fetch(`${baseURL}/order`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                amount
+            })
+        });
+        const data = await res.json();
+        console.log("hi");
+        console.log(process.env.RAZORPAY_KEY_ID);
+        handlePaymentVerify(data.data)
+
+        console.log("data", data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const handlePaymentVerify = async (data) => {
+  const options = {
+      key: process.env.RAZORPAY_KEY_ID,
+      amount: data.amount,
+      currency: data.currency,
+      name: "Chirayu",
+      description: "Test Mode",
+      order_id: data.id,
+      handler: async (response) => {
+          console.log("response", response)
+          try {
+              const res = await fetch(`${baseURL}/verify`, {
+                  method: 'POST',
+                  headers: {
+                      'content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      razorpay_order_id: response.razorpay_order_id,
+                      razorpay_payment_id: response.razorpay_payment_id,
+                      razorpay_signature: response.razorpay_signature,
+                  })
+              })
+
+              const verifyData = await res.json();
+
+              if (verifyData.message) {
+                  toast.success(verifyData.message)
+              }
+          } catch (error) {
+              console.log(error);
+          }
+      },
+      theme: {
+          color: "#5f63b8"
+      }
+  };
+  const rzp1 = new window.Razorpay(options);
+  rzp1.open();
+}
 
 
   useEffect(() => {
@@ -108,6 +190,8 @@ function BuyNow() {
             <p></p>
         }
         <h3>Cart Total: {totalCost}</h3>
+        <button className={styles.removeButton} onClick={() => { handlePayment() }}>Checkout Cart</button>
+
       </div>
     </div>
   );
