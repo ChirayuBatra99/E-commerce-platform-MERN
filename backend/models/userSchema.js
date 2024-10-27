@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema({
         }
     ],
     carts : Array
-
 });
 
 userSchema.pre("save", async function(next) {

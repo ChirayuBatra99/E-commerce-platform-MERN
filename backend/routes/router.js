@@ -4,7 +4,6 @@ const Products= require("../models/productsSchema.js")
 const USER = require("../models/userSchema.js")
 const bcrypt = require("bcryptjs")
 const authenticate = require("../middleware/authenticate.js")
-const jwt =  require("jsonwebtoken");
 const Popularproducts = require('../models/popularProductsSchema.js');
 
 const Razorpay = require('razorpay');
@@ -190,13 +189,6 @@ router.post("/login", async(req,res) => {
             const isMatch= await bcrypt.compare(password, userlogin.password);
             // console.log("2",isMatch)
 
-            const token = await userlogin.generateAuthtoken();
-            // console.log("3",token);
-            res.cookie("Amazonweb",token,{
-                expires: new Date(Date.now() + 900000),
-                httpOnly: true,
-            });
-            console.log("cookie sent");
             if(!isMatch)
             {
                 console.log("invalid creds passed")
@@ -204,6 +196,13 @@ router.post("/login", async(req,res) => {
             }
             else
             {
+            const token = await userlogin.generateAuthtoken();
+            // console.log("3",token);
+            res.cookie("Amazonweb",token,{
+                 expires: new Date(Date.now() + 900000),
+                httpOnly: true,
+            });
+            console.log("cookie sent");
                 console.log("4")
                 res.status(201).json(userlogin)
             }
